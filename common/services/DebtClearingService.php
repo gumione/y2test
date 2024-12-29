@@ -7,9 +7,7 @@ use common\services\interfaces\DebtClearingServiceInterface;
 
 class DebtClearingService implements DebtClearingServiceInterface
 {
-    public function __construct(private readonly LoanApplicationRepositoryInterface $loanRepository)
-    {
-    }
+    public function __construct(private readonly LoanApplicationRepositoryInterface $loanRepository) {}
 
     public function clearRandomDebt(): bool
     {

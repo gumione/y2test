@@ -2,12 +2,15 @@
 
 namespace common\services;
 
-use common\models\User;
 use common\dto\UpdateUserDto;
+use common\models\User;
+use common\repositories\interfaces\UserRepositoryInterface;
 use common\services\interfaces\UserServiceInterface;
 
 class UserService implements UserServiceInterface
 {
+    public function __construct(private readonly UserRepositoryInterface $userRepository) {}
+
     public function updateUser(User $user, UpdateUserDto $dto): bool
     {
         if (!$dto->validate()) {
@@ -16,7 +19,7 @@ class UserService implements UserServiceInterface
 
         $user->setAttributes($dto->getAttributes(), false);
 
-        if (!$user->save()) {
+        if (!$this->userRepository->save($user)) {
             throw new \RuntimeException('Failed to update user data.');
         }
 

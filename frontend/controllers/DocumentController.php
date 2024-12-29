@@ -38,7 +38,7 @@ class DocumentController extends Controller
      *     path="/document/upload",
      *     summary="Upload user documents",
      *     tags={"Documents"},
-     *     security={{"bearerAuth":{}}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\MediaType(
